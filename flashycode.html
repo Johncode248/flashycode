@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flashy Code — pełne platformy webowe i mobilne</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy: #0A1F44;
+    --navy-2: #0F2A5C;
+    --navy-3: #123B78;
+    --blue: #2F6FED;
+    --teal: #12B8A6;
+    --ink: #0B1B33;
+    --paper: #F6F8FC;
+    --paper-2: #EDF1F9;
+    --text-onlight: #16233F;
+    --text-dim-onlight: #5A6B8C;
+    --text-onnavy: #EAF1FF;
+    --text-dim-onnavy: #A8B9DD;
+    --border-light: #DCE3F0;
+    --radius: 12px;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior: smooth; }
+  body{
+    font-family: 'Inter', sans-serif;
+    color: var(--text-onlight);
+    background: var(--paper);
+    line-height: 1.6;
+  }
+  h1,h2,h3{ font-family: 'Manrope', sans-serif; }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width: 1140px; margin: 0 auto; padding: 0 28px; }
+
+  /* NAV */
+  header{
+    background: var(--navy);
+    position: sticky; top:0; z-index: 50;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height: 76px;
+  }
+  .logo{
+    display:flex; align-items:center; gap: 12px;
+    font-family:'Manrope', sans-serif; font-weight: 800;
+    font-size: 1.18rem; color: var(--text-onnavy);
+  }
+  .logo-mark{
+    width: 34px; height:34px; border-radius: 9px;
+    background: linear-gradient(135deg, var(--blue), var(--teal));
+    display:grid; place-items:center;
+    color: #fff; font-weight: 800; font-size: 0.95rem;
+  }
+  .logo .domain{ color: var(--text-dim-onnavy); font-weight: 600; font-size: 0.9rem; }
+  nav ul{ list-style:none; display:flex; gap: 32px; font-size: 0.92rem; color: var(--text-dim-onnavy); font-weight: 500; }
+  nav ul a:hover{ color: #fff; }
+  .nav-cta{
+    background: var(--blue); color:#fff !important;
+    padding: 10px 20px; border-radius: 8px; font-weight: 600; font-size: 0.88rem;
+  }
+  .nav-cta:hover{ background: #2560D6; }
+
+  /* HERO */
+  .hero{
+    background: linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: var(--text-onnavy);
+    padding: 88px 0 96px;
+  }
+  .hero-inner{
+    display:grid; grid-template-columns: 1.05fr 0.95fr; gap: 60px; align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap: 8px;
+    background: rgba(47,111,237,0.15);
+    border: 1px solid rgba(47,111,237,0.35);
+    color: #8FB4FF;
+    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.4px;
+    padding: 7px 14px; border-radius: 999px;
+    margin-bottom: 22px;
+  }
+  .hero h1{
+    font-size: clamp(2.1rem, 4vw, 3.1rem);
+    font-weight: 800; line-height: 1.15;
+    margin-bottom: 22px;
+    color: #fff;
+  }
+  .hero h1 em{
+    font-style: normal; color: var(--teal);
+  }
+  .hero p.lead{
+    color: var(--text-dim-onnavy);
+    font-size: 1.05rem; max-width: 480px; margin-bottom: 34px;
+  }
+  .hero-ctas{ display:flex; gap: 14px; flex-wrap: wrap; }
+  .btn{ padding: 13px 24px; border-radius: 9px; font-weight: 600; font-size: 0.94rem; }
+  .btn-primary{ background: var(--blue); color:#fff; }
+  .btn-primary:hover{ background:#2560D6; }
+  .btn-outline{ border: 1px solid rgba(255,255,255,0.28); color: #fff; }
+  .btn-outline:hover{ border-color:#fff; }
+
+  /* SIGNATURE: architecture stack */
+  .stack-card{
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius);
+    padding: 26px;
+    backdrop-filter: blur(6px);
+  }
+  .stack-card .stack-title{
+    font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--text-dim-onnavy); margin-bottom: 20px; font-weight: 600;
+  }
+  .stack-layer{
+    display:flex; align-items:center; gap: 14px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 9px;
+    padding: 15px 16px;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .stack-layer:last-child{ margin-bottom: 0; }
+  .stack-layer::before{
+    content:"";
+    position:absolute; left: 30px; top: -12px; width: 1px; height: 12px;
+    background: rgba(255,255,255,0.18);
+  }
+  .stack-layer:first-child::before{ display:none; }
+  .stack-icon{
+    width: 34px; height:34px; border-radius: 8px; flex-shrink:0;
+    display:grid; place-items:center; font-size: 0.85rem; font-weight: 700; color:#fff;
+  }
+  .stack-layer.l1 .stack-icon{ background: linear-gradient(135deg, var(--blue), #5B8DEF); }
+  .stack-layer.l2 .stack-icon{ background: linear-gradient(135deg, #1F4FB0, var(--blue)); }
+  .stack-layer.l3 .stack-icon{ background: linear-gradient(135deg, var(--teal), #1F4FB0); }
+  .stack-layer.l4 .stack-icon{ background: linear-gradient(135deg, #0F2A5C, var(--teal)); }
+  .stack-layer .name{ font-weight: 700; font-size: 0.95rem; color:#fff; }
+  .stack-layer .desc{ font-size: 0.8rem; color: var(--text-dim-onnavy); }
+
+  /* SECTIONS */
+  .section{ padding: 88px 0; }
+  .section-head{ max-width: 620px; margin-bottom: 50px; }
+  .section-tag{
+    color: var(--blue); font-weight: 700; font-size: 0.8rem;
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px;
+  }
+  .section h2{ font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; color: var(--navy); }
+  .section p.sub{ color: var(--text-dim-onlight); margin-top: 14px; font-size: 1rem; }
+
+  .services{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .service{
+    background: #fff;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+  }
+  .service:hover{ box-shadow: 0 16px 40px -20px rgba(15,42,92,0.25); transform: translateY(-4px); border-color: var(--blue); }
+  .service .glyph{
+    width: 42px; height:42px; border-radius: 10px; margin-bottom: 18px;
+    display:grid; place-items:center; font-weight: 700; color:#fff;
+    background: linear-gradient(135deg, var(--blue), var(--teal));
+    font-size: 0.9rem;
+  }
+  .service h3{ font-size: 1.08rem; margin-bottom: 10px; color: var(--navy); }
+  .service p{ color: var(--text-dim-onlight); font-size: 0.92rem; }
+
+  /* DOMAIN STRIP */
+  .domain-strip{ background: var(--paper-2); padding: 50px 0; }
+  .domain-strip .card{
+    background:#fff; border:1px solid var(--border-light); border-radius: var(--radius);
+    padding: 32px 36px;
+    display:flex; align-items:center; justify-content:space-between; gap: 24px; flex-wrap: wrap;
+  }
+  .domain-strip h3{ color: var(--navy); font-size: 1.15rem; margin-bottom: 6px; }
+  .domain-strip p{ color: var(--text-dim-onlight); font-size: 0.92rem; }
+  .domain-badge{
+    background: var(--navy); color: #fff;
+    padding: 12px 20px; border-radius: 8px; font-weight: 600; font-size: 0.9rem;
+  }
+
+  /* CONTACT */
+  .contact-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .contact-card{
+    background:#fff; border: 1px solid var(--border-light); border-radius: var(--radius);
+    padding: 30px 28px; display:flex; align-items:center; gap: 18px;
+    transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+  }
+  .contact-card:hover{ box-shadow: 0 16px 40px -20px rgba(15,42,92,0.25); transform: translateY(-4px); border-color: var(--blue); }
+  .contact-icon{
+    width: 48px; height:48px; border-radius: 10px; flex-shrink:0;
+    display:grid; place-items:center; font-size: 1.25rem; color:#fff;
+    background: linear-gradient(135deg, var(--navy), var(--blue));
+  }
+  .contact-card .label{ font-size: 0.8rem; color: var(--text-dim-onlight); margin-bottom: 4px; }
+  .contact-card .value{ font-weight: 700; font-size: 1.02rem; color: var(--navy); }
+
+  footer{ background: var(--navy); padding: 32px 0; }
+  footer .wrap{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap: wrap; gap: 12px;
+    color: var(--text-dim-onnavy); font-size: 0.85rem;
+  }
+  footer .wrap span.brand{ color: #fff; font-weight: 700; }
+
+  @media (max-width: 880px){
+    .hero-inner{ grid-template-columns: 1fr; }
+    .services{ grid-template-columns: 1fr 1fr; }
+    .contact-grid{ grid-template-columns: 1fr; }
+    nav ul{ display:none; }
+    .domain-strip .card{ flex-direction: column; align-items:flex-start; }
+  }
+  @media (max-width: 520px){
+    .services{ grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a class="logo" href="#top">
+      <span class="logo-mark">FC</span>
+      Flashy Code</span>
+    </a>
+    <ul>
+      <li><a href="#uslugi">Usługi</a></li>
+      <li><a href="#domeny">Domeny</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <a class="nav-cta" href="#kontakt">Skontaktuj się</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <div class="eyebrow">FULL&#8209;STACK &nbsp;·&nbsp; WEB &amp; MOBILE</div>
+        <h1>Kompletne platformy webowe i mobilne, <em>gotowe do wdrożenia.</em></h1>
+        <p class="lead">Frontend, backend, autoryzacja użytkowników i aplikacje mobilne — zaprojektowane i wdrożone jako jedna spójna platforma, na domenie, którą wybierzesz.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#kontakt">Omówmy projekt</a>
+          <a class="btn btn-outline" href="#uslugi">Zakres usług</a>
+        </div>
+      </div>
+
+      <div class="stack-card">
+        <div class="stack-title">Architektura platformy</div>
+        <div class="stack-layer l1">
+          <div class="stack-icon">UI</div>
+          <div><div class="name">Frontend</div><div class="desc">Interfejs użytkownika</div></div>
+        </div>
+        <div class="stack-layer l2">
+          <div class="stack-icon">API</div>
+          <div><div class="name">Backend</div><div class="desc">Logika i baza danych</div></div>
+        </div>
+        <div class="stack-layer l3">
+          <div class="stack-icon">🔒</div>
+          <div><div class="name">Logowanie</div><div class="desc">Autoryzacja i konta</div></div>
+        </div>
+        <div class="stack-layer l4">
+          <div class="stack-icon">📱</div>
+          <div><div class="name">Mobile</div><div class="desc">Aplikacja dla Twojej firmy</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="uslugi">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-tag">Usługi</div>
+        <h2>Wszystko, czego potrzebuje działająca aplikacja</h2>
+        <p class="sub">Projektuję i wdrażam kompletne platformy — bez rozdzielania projektu między osobnych wykonawców.</p>
+      </div>
+
+      <div class="services">
+        <div class="service">
+          <span class="glyph">01</span>
+          <h3>Frontend</h3>
+          <p>Interfejsy szybkie, responsywne i dopracowane — od strony firmowej po rozbudowany panel klienta.</p>
+        </div>
+        <div class="service">
+          <span class="glyph">02</span>
+          <h3>Backend</h3>
+          <p>Stabilna logika aplikacji, API i baza danych zaprojektowane z myślą o wzroście i bezpieczeństwie.</p>
+        </div>
+        <div class="service">
+          <span class="glyph">03</span>
+          <h3>Logowanie</h3>
+          <p>Bezpieczna autoryzacja użytkowników — rejestracja, logowanie, role dostępu, sesje.</p>
+        </div>
+        <div class="service">
+          <span class="glyph">04</span>
+          <h3>Aplikacje mobilne</h3>
+          <p>Aplikacje mobilne połączone z tym samym backendem co wersja webowa — jedna spójna platforma.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="domain-strip" id="domeny">
+    <div class="wrap">
+      <div class="card">
+        <div>
+          <h3>Wdrożenie na Twojej domenie</h3>
+          <p>Konfiguruję hosting i domenę wskazaną przez Ciebie — projekt trafia dokładnie tam, gdzie potrzebujesz.</p>
+        </div>
+        <div class="domain-badge">twojafirma.pl</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="kontakt">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-tag">Kontakt</div>
+        <h2>Masz pomysł na aplikację?</h2>
+        <p class="sub">Napisz lub zadzwoń — porozmawiamy o zakresie i szczegółach projektu.</p>
+      </div>
+
+      <div class="contact-grid">
+        <a class="contact-card" href="mailto:stanislawork@gmail.com">
+          <div class="contact-icon">✉</div>
+          <div>
+            <div class="label">E-mail</div>
+            <div class="value">stanislawork@gmail.com</div>
+          </div>
+        </a>
+        <a class="contact-card" href="tel:+48518684400">
+          <div class="contact-icon">☎</div>
+          <div>
+            <div class="label">Telefon</div>
+            <div class="value">+48 518 684 400</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><span class="brand">Flashy Code Stanisław Marcisz</div>
+  </div>
+</footer>
+
+</body>
+</html>
